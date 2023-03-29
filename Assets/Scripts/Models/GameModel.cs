@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using Views;
 
-public class GameModel : MonoBehaviour
+public class GameModel 
 {
     public int TickTime;
 
@@ -9,7 +10,7 @@ public class GameModel : MonoBehaviour
 
     public void Init()
     {
-        TickTime = 10;
+        TickTime = 1;
     }
     
     
@@ -23,7 +24,23 @@ public class GameModel : MonoBehaviour
        
         while (_onSimulation)
         {
-          
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 5f;
+            Vector3 CurMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            if (Input.GetMouseButton(0))
+            {
+                RaycastHit hitData;
+                if (Physics.Raycast(CurMousePos, Vector3.forward*100, out hitData)
+                    && hitData.collider.CompareTag("Letter"))
+                {
+                    WordChecker.Instance.SelectLetterEvent?.Invoke(hitData.transform.gameObject.GetComponent<LetterBlock>());
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                WordChecker.Instance.CheckWordEvent?.Invoke();
+            }
             
             await Task.Delay(msec);
         }

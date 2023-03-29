@@ -10,6 +10,7 @@ public class GlobalManager : MonoBehaviour
         _gameModel = new GameModel();
         _viewManager.Init(_gameModel);
         _gameModel.Init();
+        _gameModel.StartSimulation();
     }
 
 

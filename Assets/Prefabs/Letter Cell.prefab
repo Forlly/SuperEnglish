@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7588858751588624313}
   m_Layer: 5
   m_Name: Letter Cell
-  m_TagString: Untagged
+  m_TagString: Letter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _letterTxt: {fileID: 5477864332503772202}
+  _backgroungImg: {fileID: 3244638135758173397}
   IsUsed: 0
 --- !u!65 &7588858751588624313
 BoxCollider:
@@ -64,7 +65,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 125, y: 125, z: 1}
+  m_Size: {x: 100, y: 100, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7392528067610789328
 GameObject:
@@ -103,7 +104,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 125, y: 125}
+  m_SizeDelta: {x: 145, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3349782498706043957
 CanvasRenderer:

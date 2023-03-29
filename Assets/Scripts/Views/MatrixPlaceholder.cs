@@ -52,6 +52,8 @@ public class MatrixPlaceholder : MonoBehaviour
         {
             for (int j = 0; j < _width; j++)
             {
+                _blocksMatrix[i*5 + j].SetIndx(i*5 + j);
+                    
                 if ( _matrixLetters[i, j] == ' ')
                 {
                     _matrixLetters[i, j] = lettersInCurrentWords[rng.Next(lettersInCurrentWords.Count)];
@@ -60,7 +62,7 @@ public class MatrixPlaceholder : MonoBehaviour
         }
         
         ShowWordsMatrix();
-        WordChecker.Instance.SetWords(_currentWords);
+        WordChecker.Instance.SetWords(_currentWords, _blocksMatrix);
     }
 
     public void GenerateMatrix()
@@ -115,7 +117,7 @@ public class MatrixPlaceholder : MonoBehaviour
 
         positionsOfLetters.Add(x);
         positionsOfLetters.Add(y);
-        Debug.Log(x + "" + y);
+
         nextX = nextPos.Item1;
         nextY = nextPos.Item2;
         
@@ -124,7 +126,7 @@ public class MatrixPlaceholder : MonoBehaviour
         for (int i = 1; i < word.Length; i++)
         {
             _matrixLetters[nextX, nextY] = char.ToUpper(word[i]);
-            Debug.Log(nextX + "" + nextY);
+     
             positionsOfLetters.Add(nextX);
             positionsOfLetters.Add(nextY);
 
@@ -179,7 +181,7 @@ public class MatrixPlaceholder : MonoBehaviour
                 _currentWords.Add(_words[_countOfWords]);
             }
         }
-        
+        Debug.Log(_words[_countOfWords]);
         GenerateWord(_words[_countOfWords]);
 
     }
@@ -266,7 +268,6 @@ public class MatrixPlaceholder : MonoBehaviour
             directions.RemoveAt(0);
             if (directions.Count == 0)
             {
-                Debug.Log("No free direction");
                 return (-1,-1);
             }
         }
