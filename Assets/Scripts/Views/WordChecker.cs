@@ -40,9 +40,9 @@ namespace Views
             return _countOfPoints;
         }
         
-        public int GetCountOfWords()
+        public int GetCountOfGuessedWords()
         {
-            return _countOfWords;
+            return _countOfGuessedWords;
         }
 
         public void SetWords(List<string> words, List<LetterBlock> letterBlocks)
@@ -71,8 +71,8 @@ namespace Views
                     || nextIndx + 5 == _currentLettersIndx
                     || nextIndx - 6 == _currentLettersIndx
                     || nextIndx + 6 == _currentLettersIndx
-                    || nextIndx - 4 == _currentLettersIndx
-                    || nextIndx + 4 == _currentLettersIndx)
+                    || (nextIndx - 4 == _currentLettersIndx && nextIndx % 5 != 4)
+                    || (nextIndx + 4 == _currentLettersIndx && nextIndx%5 != 0))
                 {
                     _currentLettersIndx = letterBlock.GetIndx();
                 }
