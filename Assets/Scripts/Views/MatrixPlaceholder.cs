@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Models;
 using UnityEngine;
+using Views;
 using Random = System.Random;
 
 public class MatrixPlaceholder : MonoBehaviour
@@ -44,6 +45,8 @@ public class MatrixPlaceholder : MonoBehaviour
         GenerateMatrix();
 
         List<char> lettersInCurrentWords = _currentWords.SelectMany(word => word).ToList();
+        lettersInCurrentWords = allLetters.Except(lettersInCurrentWords).ToList();
+        
         
         for (int i = 0; i < _height; i++)
         {
@@ -51,12 +54,13 @@ public class MatrixPlaceholder : MonoBehaviour
             {
                 if ( _matrixLetters[i, j] == ' ')
                 {
-                    _matrixLetters[i, j] = allLetters[rng.Next(allLetters.Count)];
+                    _matrixLetters[i, j] = lettersInCurrentWords[rng.Next(lettersInCurrentWords.Count)];
                 }
             }
         }
         
         ShowWordsMatrix();
+        WordChecker.Instance.SetWords(_currentWords);
     }
 
     public void GenerateMatrix()
@@ -81,32 +85,32 @@ public class MatrixPlaceholder : MonoBehaviour
     {
         positionsOfLetters.Clear();
         
-        int x = rng.Next(_height);
-        int y = rng.Next(_width);
+        int x = rng.Next(_width);
+        int y = rng.Next(_height);
         int nextX;
         int nextY;
 
 
         while (_matrixLetters[x,y] != ' ' && _matrixLetters[x,y] != word[0])
         {
-            x = rng.Next(_height);
-            y = rng.Next(_width);
+            x = rng.Next(_width);
+            y = rng.Next(_height);
         }
 
-        var nextPos = CheckSide(word[0], x, y);
+        var nextPos = CheckSide(word[1], x, y);
         
         while (nextPos.Item1 == -1)
         {
-            x = rng.Next(_height);
-            y = rng.Next(_width);
+            x = rng.Next(_width);
+            y = rng.Next(_height);
             
             while (_matrixLetters[x,y] != ' '&& _matrixLetters[x,y] != word[0])
             {
-                x = rng.Next(_height);
-                y = rng.Next(_width);
+                x = rng.Next(_width);
+                y = rng.Next(_height);
             }
             
-            nextPos = CheckSide(word[0], x, y);
+            nextPos = CheckSide(word[1], x, y);
         }
 
         positionsOfLetters.Add(x);
@@ -120,6 +124,7 @@ public class MatrixPlaceholder : MonoBehaviour
         for (int i = 1; i < word.Length; i++)
         {
             _matrixLetters[nextX, nextY] = char.ToUpper(word[i]);
+            Debug.Log(nextX + "" + nextY);
             positionsOfLetters.Add(nextX);
             positionsOfLetters.Add(nextY);
 
@@ -159,26 +164,15 @@ public class MatrixPlaceholder : MonoBehaviour
                 return;
             }
         }
-
-
+        
         _countOfReplaceWord = 0;
-        for (int i = 0; i < word.Length; i++)
-        {
-            for (int j = 0; j < allLetters.Count; j++)
-            {
-                if (allLetters[j] == word[i])
-                {
-                    allLetters.Remove(allLetters[j]);
-                }
-            }
-        }
     }
 
     private void ReplaceWord(string word)
     {
         for (int i = 0; i < _currentWords.Count; i++)
         {
-            if (_currentWords[i] == word && _words.Count > _countOfWords)
+            if (_currentWords[i] == word && _words.Count - 1> _countOfWords)
             {
                 _currentWords.Remove(_currentWords[i]);
                 _words.RemoveAt(0);

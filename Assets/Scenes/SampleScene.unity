@@ -1081,6 +1081,54 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4550407332088608442, guid: 19aac910db1304b4d9d5205d2a3c072d, type: 3}
   m_PrefabInstance: {fileID: 299553883}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &375631690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 375631691}
+  - component: {fileID: 375631692}
+  m_Layer: 0
+  m_Name: WordChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &375631691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375631690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 679147737}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375631692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375631690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dcb3cb5501e428892407056133095b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wordDisplay: {fileID: 1368518846}
+  _countOfPointsText: {fileID: 1086105609}
+  _countOfWordsText: {fileID: 1535952593}
+  CurrentWord: 
 --- !u!1 &468935943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1410,7 @@ Transform:
   - {fileID: 1045171323}
   - {fileID: 468935944}
   - {fileID: 1100908117}
+  - {fileID: 375631691}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2001,7 +2050,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -2739,7 +2788,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Letter Cell (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6496563970657060948, guid: 19aac910db1304b4d9d5205d2a3c072d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6496563970657060948, guid: 19aac910db1304b4d9d5205d2a3c072d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19aac910db1304b4d9d5205d2a3c072d, type: 3}
 --- !u!224 &1255782103 stripped
 RectTransform:
@@ -2751,7 +2805,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 572646523053217632, guid: 19aac910db1304b4d9d5205d2a3c072d, type: 3}
   m_PrefabInstance: {fileID: 1255782102}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1609070392}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dde4555477af0b4c8d6358261a3553f, type: 3}
@@ -3586,6 +3640,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dde4555477af0b4c8d6358261a3553f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1609070392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6311411535019777170, guid: 19aac910db1304b4d9d5205d2a3c072d, type: 3}
+  m_PrefabInstance: {fileID: 1255782102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1609070393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609070392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 125, y: 125, z: 2.4351006}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1675197023
 PrefabInstance:
   m_ObjectHideFlags: 0
